@@ -1,0 +1,209 @@
+@CHARSET "UTF-8";
+
+body {
+	padding : 0;
+	margin : 0;
+	text-align : left;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/*  Using a variant of our font-size formula to define the maximum width of our design. 
+By dividing the comp’s width of 460px by our base font-size of 16px, we can set a max-width 
+in ems to approximate the pixel-based width from our targeted mockup, which will prevent the page from 
+exceeding our ideal of 460px. But since we’ve used ems to set this upper limit, the max-width 
+will scale up as the user increases the browser’s text size.*/
+#wrapper {
+	padding : 1em 1.5625em; /* 15px / 16px = 1em, 25px / 16px = 1.5625em*/
+	background-color: #002868; 
+	text-align: left;
+	max-width: 28.75em;    /* 460px / 16px = 28.75em */
+	color : white;
+	margin-left: auto;
+	margin-right: auto; 
+	border : thin solid blue;
+}
+
+h1{
+	text-align: center;
+	font-size: 1.5em;        /* 24px / 16px = 1.5em */
+	
+}
+
+.suggestions label{
+	font-weight: bold;
+	font-style: italic;
+}
+
+#intro, #p80, #p170, #p350, #d300, #volume {
+	font-weight: bold;
+}
+
+.prompt {
+	font-style: italic;
+}
+
+
+#unitSelect {
+	font-weight: bold;
+}
+
+#riseSelect {
+	font-weight: bold;
+	background: yellow;
+	color: red;
+	box-shadow: 0 0 .3125em #5cd053; /* 5px / 16px = 0.3125em */
+}
+
+#btuhAnswer{
+	font-weight: Bold;
+	color: red;
+	background-color: yellow;
+	text-align: right;
+	
+}
+
+/* Styling for the form */
+.form_hint, .required_notification {font-size: .6875em;}  /* 11px / 16px = .6875em */
+
+/* Webkit automatically adds some styling to input elements when they are in focus. 
+Since we'll be adding our own styles, we want to override these defaults:*/
+*:focus {outline: none;}
+
+
+/*  Style sturcture of input list elements*/
+.volumecalc_form ul, .desiredRise ul  {
+    list-style-type:none;
+    list-style-position:outside;
+    margin:0px;
+    padding:0px;
+}
+.volumecalc_form li, .desiredRise li {
+    padding: .75em; 	/* 12px / 16px = .75em */
+   /* border-bottom:.0625em solid #eee;  1px / 16px = .0625em */
+    position:relative;
+}
+
+/*  Style sturcture of input list elements*/
+.suggestions ul  {
+    list-style-type:none;
+    list-style-position:outside;
+}
+.suggestions li {
+    position:relative;
+    line-height: 
+}
+a { color: inherit; } 
+
+#lbwhitelink {
+	text-align: right;
+}
+
+.suggestions img{
+ vertical-align:middle;  
+ padding-right: .7em; 
+}
+.suggestions a{
+ vertical-align:middle;  
+}
+
+/* Second Level */
+ul ul{
+  margin-left: .9375em; /* 15px / 16px = 0.9375em */
+}
+
+
+/* style the notification that informs users that the asterisk (*) indicates required fields.*/
+.required_notification {
+    color:#d45252;
+    margin: .3125em 0 0 0; /* 5px / 16px = .3125em */
+    display:inline;
+    float:right;
+}
+
+/*style all of our core form elements, the ones used to collect user information.*/
+.volumecalc_form label {
+    width:6.25em; /* 100px / 16px = 6.25em */
+    margin-top: 0.1875em; /* 3px / 16px = 0.1875em */
+    display:inline-block;
+    float:left;
+    padding:0.1875em; /* 3px / 16px = 0.1875em */
+}
+.volumecalc_form input {
+    height:1.25em; /* 20px / 16px = 1.25em */
+    text-align: right;
+    max-width:6.25em; /* 100px / 16px = 6.25em */
+    padding:.3125em .5em; /*    5px / 16px = .3125em  8px / 16px = .5em*/
+}
+.volumecalc_form textarea {padding:.5em; width:200px;} /* 8px / 16px = .5em*/
+
+/* extra visual CSS styles */
+.volumecalc_form input, .volumecalc_form textarea {
+    border:0.0625em solid #aaa; /*1px / 16px = 0.0625em*/
+    box-shadow: 0px 0px 0.1875em #ccc, 0 10px 15px #eee inset; /* 3px / 16px = 0.1875em */
+    border-radius: 0.125em; /*2px / 16px = 0.125em */
+}
+.volumecalc_form input:focus, .volumecalc_form textarea:focus {
+    background: #fff;
+    border:0.0625em solid #555; /*1px / 16px = 0.0625em*/
+    box-shadow: 0 0 0.1875em #aaa; /* 3px / 16px = 0.1875em */
+}
+
+/* Interactivity - make the field that is currently selected expand by adding some padding */
+.volumecalc_form input:focus, .volumecalc_form textarea:focus { /* add this to the already existing style */
+    padding-right:3.125em; /* 50px / 16px = 3.125em */
+}
+
+/* For browsers that support it, let's make the expansion of the field a smooth transition using CSS3 */
+.volumecalc_form input, .volumecalc_form textarea { /* add this to the already existing style */
+    -moz-transition: padding .25s;
+    -webkit-transition: padding .25s;
+    -o-transition: padding .25s;
+    transition: padding .25s;
+}
+
+/* add a red asterisk as a background image in each required field. To accomplish this, we will want to first add some padding on the right side of our input where the 
+background image will be (this will prevent text overlap if the field entry is a long string):*/
+.volumecalc_form input, .volumecalc_form textarea {
+    padding-right:1.875em; /*30px / 16px = 1.875em*/
+}
+/*use the CSS pseudo selector :required to target all the form elements with a required attribute. */
+input:required, textarea:required {
+    background: #fff url(../img/red_asterisk.png) no-repeat 98% center;
+}
+
+
+/* HTML5 validation */
+.volumecalc_form input:focus:invalid, .volumecalc_form textarea:focus:invalid { /* when a field is considered invalid by the browser */
+    background: #fff url(../img/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 0.3125em #d45252; /* 5px / 16px = 0.3125em */
+    border-color: #b03535
+}
+.volumecalc_form input:required:valid, .volumecalc_form textarea:required:valid { /* when a field is considered valid by the browser */
+    background: #fff url(../img/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 0.3125em #5cd053; /* 5px / 16px = 0.3125em */
+    border-color: #28921f;
+}
+
+/* Hints */
+.form_hint {
+    background: #d45252;
+    border-radius: 0.1875em 0.1875em 0.1875em 0.1875em; /* 3px / 16px = 0.1875em */
+    color: white;
+    margin-left: .5em; /* 8px / 16px = .5em*/
+    padding: .0625em 0.375em; /* 1px / 16px = .0625em 6px / 16px = 0.375em*/
+    z-index: 999; /* hints stay above all other elements */
+    position: absolute; /* allows proper formatting if hint is two lines */
+    display: none;
+}
+.form_hint::before {
+    content: "\25C0"; /* left point triangle in escaped unicode */
+    color:#d45252;
+    position: absolute;
+    top: .0625em; /* 1px / 16px = .0625em */
+    left:-0.375em; /* 6px / 16px = 0.375em*/
+}
+.volumecalc_form input:focus + .form_hint {display: inline;}
+.volumecalc_form input:required:valid + .form_hint {background: #28921f;} /* change form hint color when valid */
+.volumecalc_form input:required:valid + .form_hint::before {color:#28921f;} /* change form hint arrow color when valid */
+
+

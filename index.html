@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" manifest="offline.appcache">
+
+<!-- Copyright 2014 Verticon, Inc. all rights reserved.        -->
+<head>
+<title>LB White Heater Estimator</title>
+<meta charset="utf-8">
+
+<!-- Prevent scaling 
+ <meta name="viewport" content="user-scalable=no, width=device-width" />
+ -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- Eliminate url and button bars if added to home screen -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!-- Choose how to handle the phone status bar -->
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent" />
+
+<!-- TODO Specify a 320x460 start-up image. 
+ <link rel="apple-touch-startup-image" href="./startup.png" />
+ -->
+
+<!-- TODO Choose a 57x57 image for the icon 
+ <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+ -->
+<!--TODO For Android bookmark icons See: http://stackoverflow.com/questions/1951381/configuring-android-web-applications 
+and http://www.mollerus.net/tom/blog/2010/06/web_app_homescreen_icons_in_android.html
+-->
+<link rel="apple-touch-icon-precomposed"
+	href="img/apple-touch-icon-precomposed.png" />
+
+<link rel="stylesheet" href="css/main.css">
+<script src="js/HeaterCalc.js"></script>
+<script src="js/controller.js"></script>
+</head>
+<body>
+	<div id=wrapper>
+		<h1>
+			<img src="img/LBW_White_Logo.png" alt="L.B. White">
+		</h1>
+		<h1>Heater Estimator</h1>
+		<p id="intro">To determine Btuh heater requirements...</p>
+
+
+		<!-- 
+  -- The stuff below is an HTML table inside of an HTML form.  It gets tricky!
+  -- Notice the event handlers on all the form input elements.
+  -->
+		<form name="volumecalc_form">
+			<fieldset class="volumecalc_form">
+				<legend>Room Measurements</legend>
+				<ul>
+					<li><span class="prompt">Find Cubic Measurements of
+							Tent by Entering Room Measurements in <select id="unitSelect">
+								<option value="ft.">Feet</option>
+								<option value="m.">Meters</option>
+						</select>
+					</span> <span class="required_notification">* Denotes Required
+							Field</span></li>
+					<li><label for="height">Height:</label> <input type="number"
+						name="height" required pattern="^\d*(\.\d*)?$"
+						title="Numbers with or without decimal points"
+						onChange="compute()" /> <span class="form_hint">Proper
+							format "11.2 or 11"</span> <span class="spaceUnits">ft.</span></li>
+					<li><label for="width">Width:</label> <input type="number"
+						name="width" required pattern="^\d*(\.\d*)?$"
+						title="Numbers with or without decimal points"
+						onChange="compute()" /> <span class="form_hint">Proper
+							format "11.2 or 11"</span> <span class="spaceUnits">ft.</span></li>
+					<li><label for="length">Length:</label> <input type="number"
+						name="length" required pattern="^\d*(\.\d*)?$"
+						title="Numbers with or without decimal points"
+						onChange="compute()" /> <span class="form_hint">Proper
+							format "11.2 or 11"</span> <span class="spaceUnits">ft.</span></li>
+					<li>Cubic <span class="spaceUnitsName">Feet</span> of the
+						Tent/Marquee: <span id="volume"></span>
+					</li>
+
+				</ul>
+			</fieldset>
+
+			<div class="desiredRise">
+				<fieldset>
+					<legend>Room Temperature</legend>
+					<ul>
+						<li><label class="prompt" for="desiredRiseInTemp">Select
+								Desired Rise in Room Temperature(°<span class="tempUnits">F</span>):
+						</label> <select id="riseSelect">
+								<option value="5">°5</option>
+								<option value="10">°10</option>
+								<option value="20">°20</option>
+								<option value="30">°30</option>
+								<option value="40">°40</option>
+								<option value="50">°50</option>
+								<option value="60" selected>°60</option>
+								<option value="70">°70</option>
+								<option value="80">°80</option>
+								<option value="90">°90</option>
+								<option value="100">°100</option>
+						</select></li>
+						<li><label for="btuhReq">Btuh Requirement for Room:</label> <span
+							id="btuhAnswer"> <span id="btuhReqNumber"></span> <span
+								id="btuhReqWord"></span>
+						</span></li>
+
+					</ul>
+				</fieldset>
+			</div>
+			<!-- end .desiredRise -->
+		</form>
+		<div class="suggestions">
+		<h2>May We Suggest:</h2>
+		<ul>
+				
+				<li>
+					<img src="img/Premier-80.png" alt="Premier80">
+				
+					<span id="p80"></span> <a
+						href="http://www.lbwhite.com/products/Tent-Heaters/Premier-Portable-Heater/">Premier
+						80's</a>
+				</li>
+				
+				<li>
+					<img src="img/Premier-170.png" alt="Premier170">
+				
+					<span id="p170"></span> <a
+						href="http://www.lbwhite.com/products/Tent-Heaters/Premier-Portable-Heater/">Premier
+						170's</a>
+				</li>
+				
+				<li>
+					<img src="img/Premier-350.png" alt="Premier350">
+				
+					<span id="p350"></span>
+								<a
+								href="http://www.lbwhite.com/products/Tent-Heaters/Premier-Portable-Heater/">Premier
+									350's</a>
+				</li>
+				
+				<li>
+					<img src="img/Director.png" alt="Director300">
+				
+					<span id="d300"></span>
+								<a
+								href="http://www.lbwhite.com/products/Tent-Heaters/Director-Portable-Heater/">Director
+									300's</a>
+				</li>
+
+			</ul>
+			
+		</div>
+		<!-- end .suggestions -->
+
+		
+
+		<p id="lbwhitelink"><a  href="http://www.lbwhite.com/">http://www.lbwhite.com</a></p>
+	    
+	</div>
+	<!-- end #wrapper -->
+</body>
+</html>
