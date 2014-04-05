@@ -95,7 +95,7 @@ Since we'll be adding our own styles, we want to override these defaults:*/
 a { color: inherit; } 
 
 #lbwhitelink {
-	text-align: right;
+	text-align: center;
 }
 
 .suggestions img{
