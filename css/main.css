@@ -101,6 +101,10 @@ a { color: inherit; }
 .suggestions img{
  vertical-align:middle;  
  padding-right: .7em; 
+ width:20%;
+ height: auto;
+ max-width:100px; 
+ max-height:100px;
 }
 .suggestions a{
  vertical-align:middle;  
