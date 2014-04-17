@@ -3,11 +3,14 @@
  */
 
 var METRIC_UNITS = 8.454221213;
-var FEET_UNITS = 0.133;
+var FEET_UNITS = 0.266;// Changed for issue 9 from 0.133;
 
 var Units = new Object();
 Units[0] = FEET_UNITS;
 Units[1] = METRIC_UNITS;
+
+var BTUHREQWORDS = [ "Btuh's", "Watts" ];
+var btuhReqWord = BTUHREQWORDS[0];
 
 // Celsius to Fahrenheit
 var DEGREE_ABR = [ "F", "C" ];
@@ -42,6 +45,7 @@ function changeUnits() {
 	var unitSelectObjIndex = unitSelectObj.selectedIndex;
 	var spaceUnitValue = unitSelectObj[unitSelectObjIndex].value;
 	var spaceUnitText = unitSelectObj[unitSelectObjIndex].text;
+    btuhReqWord = BTUHREQWORDS[unitSelectObjIndex];
 	var unitFactor = Units[unitSelectObjIndex];
 	c.setUnitFactor(unitFactor);
 	// Change all space Units to Feet or Meters
@@ -84,15 +88,20 @@ function populate_fahrenheit_options(select) {
 function populate_celsius_options(select) {
 	select.options[select.options.length] = new Option('°2.5', 2.5);
 	select.options[select.options.length] = new Option('°5', 5);
+	select.options[select.options.length] = new Option('°7.5', 7.5);
 	select.options[select.options.length] = new Option('°10', 10);
+	select.options[select.options.length] = new Option('°12.5', 12.5);
 	select.options[select.options.length] = new Option('°15', 15);
+	select.options[select.options.length] = new Option('°17.5', 17.5);
 	select.options[select.options.length] = new Option('°20', 20);
+	select.options[select.options.length] = new Option('°22.5', 22.5);
 	select.options[select.options.length] = new Option('°25', 25);
+	select.options[select.options.length] = new Option('°27.5', 27.5);
 	select.options[select.options.length] = new Option('°30', 30);
+	select.options[select.options.length] = new Option('°32.5', 32.5);
 	select.options[select.options.length] = new Option('°35', 35);
+	select.options[select.options.length] = new Option('°37.5', 37.5);
 	select.options[select.options.length] = new Option('°40', 40);
-	select.options[select.options.length] = new Option('°45', 45);
-	select.options[select.options.length] = new Option('°50', 50);
 	select.options[3].selected = true;
 }
 
@@ -149,16 +158,17 @@ function compute() {
 		volumeElement.innerHTML = addCommas(volume);
 	}
 
-	// Btuh Requirements
+	// heat Requirements
 	var btuhReqNumElement = document.getElementById("btuhReqNumber");
 	var btuhReqWordElement = document.getElementById("btuhReqWord");
-	var btuhs = c.btuhReq();
+	var btuhs = c.heatReq();
 	if (btuhs == "") {
 		btuhReqNumElement.innerHTML = "";
 		btuhReqWordElement.innerHTML = "";
 	} else {
 		btuhReqNumElement.innerHTML = addCommas(btuhs);
-		btuhReqWordElement.innerHTML = "Btuh's";
+		//Feet - Bthu's
+		btuhReqWordElement.innerHTML = btuhReqWord;
 	}
 
 	// Suggestions
