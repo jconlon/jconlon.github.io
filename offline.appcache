@@ -1,15 +1,21 @@
 CACHE MANIFEST
-# Version 2.0 with fixes for Issues 9,10,11,12
+# Version 2.1 with fixes for Issue 1
 index.html
 js/HeaterCalc.js
 js/controller.js
 css/main.css  
+img/apple-touch-icon-114x114-precomposed.png
+img/apple-touch-icon-120x120-precomposed.png
+img/apple-touch-icon-144x144-precomposed.png
+img/apple-touch-icon-152x152-precomposed.png
+img/apple-touch-icon-72x72-precomposed.png
+img/apple-touch-icon-76x76-precomposed.png
 img/apple-touch-icon-precomposed.png
 img/Director.png
 img/invalid.png
-img/valid.png
 img/LBW_White_Logo.png
-img/Premier-80.png
 img/Premier-170.png
 img/Premier-350.png
+img/Premier-80.png
 img/red_asterisk.png
+img/valid.png
